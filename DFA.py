@@ -7,7 +7,7 @@ import itertools
 import Lstar
 from random import randint, shuffle
 import random
-from time import clock
+from time import perf_counter
 import string
 
 digraph = functools.partial(gv.Digraph, format='png')

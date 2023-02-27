@@ -1,4 +1,4 @@
-from time import clock
+from time import perf_counter
 
 class TableTimedOut(Exception):
     pass
@@ -66,7 +66,7 @@ class ObservationTable:
 
     def _assert_not_timed_out(self):
         if not None is self.time_limit:
-            if clock()-self.start > self.time_limit: 
+            if perf_counter()-self.start > self.time_limit: 
                 print("obs table timed out")
                 raise TableTimedOut() # whatever, can't be bothered rn
 

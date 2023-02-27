@@ -2,7 +2,7 @@ from LSTM import LSTMNetwork
 from GRU import GRUNetwork
 from LinearTransform import LinearTransform
 import dynet as dy
-from time import clock
+from time import perf_counter
 import random
 import matplotlib.pyplot as plt
 from math import ceil
@@ -105,7 +105,7 @@ class RNNClassifier:
                     batch_size=20,show=True,print_time=True,stop_threshold=0):
         if iterations == 0:
             return
-        start = clock()
+        start = perf_counter()
         trainer = trainer_class(self.pc)
         if not None is learning_rate:
             trainer.learning_rate = learning_rate
@@ -130,7 +130,7 @@ class RNNClassifier:
 
         self.all_losses += loss_values
         if print_time:
-            print("total time:",clock()-start)
+            print("total time:",perf_counter()-start)
         if show:
             plt.scatter(range(len(loss_values)),loss_values,label="classification loss for these epochs")
             plt.legend()

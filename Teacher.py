@@ -1,6 +1,6 @@
 from Quantisations import SVMDecisionTreeQuantisation
 from WhiteboxRNNCounterexampleGenerator import WhiteboxRNNCounterexampleGenerator
-from time import clock
+from time import perf_counter
 
 class Teacher:
     def __init__(self, network, num_dims_initial_split=10,starting_examples=None):
@@ -25,9 +25,9 @@ class Teacher:
 
     def equivalence_query(self, dfa):
         self.dfas.append(dfa)
-        start = clock()
+        start = perf_counter()
         counterexample,message = self.counterexample_generator.counterexample(dfa)
-        counterexample_time = clock() - start
+        counterexample_time = perf_counter() - start
         print(message)
         print("equivalence checking took: " + str(counterexample_time))
         if not None is counterexample:
