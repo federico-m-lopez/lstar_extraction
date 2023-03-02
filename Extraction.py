@@ -23,4 +23,7 @@ def extract(rnn,time_limit = 50,initial_split_depth = 10,starting_examples=None)
 
 	print("generated counterexamples were: (format: (counterexample, counterexample generation time))")
 	print('\n'.join([str(a) for a in guided_teacher.counterexamples_with_times]))
+	for automata in guided_teacher.dfas:
+	    print(f"dfa size: {str(len(automata.Q))}")
+	    automata.draw_nicely(maximum=30)
 	return dfa
