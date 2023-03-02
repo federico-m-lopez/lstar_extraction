@@ -119,11 +119,11 @@ class WhiteboxRNNCounterexampleGenerator:
                     return None, "lstar extraction not successful - ran out of time"
                 if len(self.new_RStates) == 0: # seen everything there is to see here
                     return None, "lstar successful: unrolling seems equivalent to proposed automaton"
+                dfa.draw_nicely(maximum=30)
                 counterexample, split = self._process_top_pair() # always returns a cex, or a split, or neither - but never both
                 if not None is counterexample:
                     return counterexample,counterexample_message(counterexample,self.whiteboxrnn)
                 elif split.has_info:
-                    dfa.draw_nicely(maximum=30)
                     cluster_being_split = self.partitioning.get_partition(split.agreeing_RStates[0])
                     self.partitioning.refine(split.agreeing_RStates,split.conflicted_RState)
                     if self._split_was_clean(cluster_being_split,split):
