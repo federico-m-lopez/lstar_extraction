@@ -123,6 +123,7 @@ class WhiteboxRNNCounterexampleGenerator:
                 if not None is counterexample:
                     return counterexample,counterexample_message(counterexample,self.whiteboxrnn)
                 elif split.has_info:
+                    dfa.draw_nicely(maximum=30)
                     cluster_being_split = self.partitioning.get_partition(split.agreeing_RStates[0])
                     self.partitioning.refine(split.agreeing_RStates,split.conflicted_RState)
                     if self._split_was_clean(cluster_being_split,split):
